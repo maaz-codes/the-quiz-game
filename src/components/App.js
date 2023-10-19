@@ -12,6 +12,7 @@ import FinishedScreen from "./FinishedScreen";
 import RestartButton from "./RestartButton";
 import Timer from "./Timer";
 import Footer from "./Footer";
+import { quizData } from "../questions";
 
 const initialState = {
   questions: [],
@@ -103,10 +104,19 @@ function App() {
   ), 0);
 
   useEffect(() => {
-    async function getData() {
+    // async function getQuestions() {
+    //   try {
+    //     const res = await fetch("http://localhost:8000/questions");
+    //     const data = await res.json();
+    //     dispatch({type: "recievedData", payload: data});
+    //   } catch (error) {
+    //     dispatch({type: "dataFailed"});
+    //   }
+    // }
+
+    function getData() {
       try {
-        const res = await fetch("http://localhost:8000/questions");
-        const data = await res.json();
+        const data = quizData.questions;
         dispatch({type: "recievedData", payload: data});
       } catch(err) {
           dispatch({type: "dataFailed"});
